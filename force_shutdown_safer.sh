@@ -6,16 +6,16 @@ if [[ $EUID -ne 0 ]]; then
     exit 1
 fi
 
-# Enable SysRq
-echo 1 > /proc/sys/kernel/sysrq
+echo "Attempting normal shutdown..."
+systemctl poweroff
 
-# Flush filesystem buffers
+sleep 30
+
+echo "Normal shutdown did not complete; forcing power off..."
+
+echo 1 > /proc/sys/kernel/sysrq
 echo s > /proc/sysrq-trigger
 sleep 2
-
-# Remount filesystems read-only
 echo u > /proc/sysrq-trigger
 sleep 2
-
-# Immediate reboot
-echo b > /proc/sysrq-trigger
+echo o > /proc/sysrq-trigger

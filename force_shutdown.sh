@@ -17,5 +17,5 @@ sleep 2
 echo u > /proc/sysrq-trigger
 sleep 2
 
-# Immediate reboot
-echo b > /proc/sysrq-trigger
+# Immediate power off
+echo o > /proc/sysrq-trigger
